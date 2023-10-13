@@ -1,0 +1,8 @@
+{
+    "name": "HyperIoT plugin",
+    "version": "1.0.0",
+    "description": "plugin used to integrate Cheshire Cat inside HyperIoT platform.",
+    "author_name": "Alessio Serra",
+    "tags": "test, hyot, python, machineLearning",
+    "thumb": "https://raw.githubusercontent.com/alessioserra/content/main/logo.png"
+}
