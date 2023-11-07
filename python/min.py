@@ -68,7 +68,7 @@ value = df_complete.select(
     ("hPacketField.value.member5"),
     ("hPacketField.value.member6")) 
 
-# MEAN (CHANGE STATISTIC TYPE HERE)
+# MIN (CHANGE STATISTIC TYPE HERE)
 output = value.select(coalesce(value.member0.cast("string"), value.member1.cast("string"),
                                value.member2.cast("string"), value.member3.cast("string"),
                                value.member4.cast("string"), value.member5.cast("string"),
