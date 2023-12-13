@@ -1,21 +1,21 @@
 from cat.mad_hatter.decorators import tool, hook
 import requests
 
-#Tools are Python functions called by the LLM to execute actions. 
+# Tools are Python functions called by the LLM to execute actions. 
 # They are made of two parts: the first one contains instructions that 
 # explain the LLM when and how to call function; the second one 
 # contains the actual code to execute.
 
-# Da customizzare per UTENTE (vedi user_id in doc)
-token = ""
 progettiDict = {}
 projects = []
 
 @hook
 def agent_prompt_prefix(prefix, cat):
     prefix = """Tu sei ACBot, la nostra guida all'interno della piattaforma HypeIoT (link: https://hyperiot.cloud). Sei molto gentile e super disponibile ad ogni richiesta."""
+    token = f"JWT {cat.user_id}"
     r = requests.get("https://microservices-test.hyperiot.cloud/hyperiot/hprojects/all/cards", headers={'Authorization': token}, verify=False)
     for obj in r.json():
+        print(obj)
         progettiDict[obj['name'].lower()] = obj['id']
         projects.append(obj['name'])
     return prefix
@@ -38,6 +38,7 @@ def cosa_e(arg, cat):
 @tool
 def quali_sono_i_progetti_di_hyperiot(arg, cat):
     """Quali sono i progetti di Hyperiot? Rispondi con la lista dei progetti"""
+    token = f"JWT {cat.user_id}"
     r = requests.get("https://microservices-test.hyperiot.cloud/hyperiot/hprojects/all/cards", headers={'Authorization': token}, verify=False)
     for obj in r.json():
         progettiDict[obj['name']] = obj['id']
@@ -50,6 +51,7 @@ def quali_sono_i_progetti_di_hyperiot(arg, cat):
 @tool
 def quali_sono_i_device_del_progetto(arg, cat):
     """Quali sono i device del progetto? L'input è il nome del progetto"""
+    token = f"JWT {cat.user_id}"
     projectId = progettiDict[arg.lower()]
     r = requests.get(f"http://microservices-test.hyperiot.cloud/hyperiot/hdevices/all/{projectId}", headers={'Authorization': token}, verify=False)
     return r.json()
@@ -57,6 +59,7 @@ def quali_sono_i_device_del_progetto(arg, cat):
 @tool
 def quali_sono_i_pacchetti_del_progetto(arg, cat):
     """Quali sono i pacchetti del progetto? L'input è il nome del progetto"""
+    token = f"JWT {cat.user_id}"
     projectId = progettiDict[arg.lower()]
     r = requests.get(f"http://microservices-test.hyperiot.cloud/hyperiot/hpackets/all/{projectId}", headers={'Authorization': token}, verify=False)
     return r.json()
