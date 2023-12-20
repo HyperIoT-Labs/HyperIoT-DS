@@ -12,8 +12,10 @@ The statistics available at the moment are:
  - Minimum
 
 Versions of technologies used in the process:
-
- - [x] Spark 3.4.0.
- - [x] Scala 2.12.17.
- - [x] Circe 0.13.0.
- - [x] HBase 2.5.3.
+ 
+ - [x] Spark 17
+ - [x] Spark 3.4.0
+ - [x] Scala 2.12.17
+ - [x] Circe 0.13.0
+ - [x] HBase 2.5.3
+ - [x] sbt 1.6.0
