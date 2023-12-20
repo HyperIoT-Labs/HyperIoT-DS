@@ -11,7 +11,7 @@ projects = []
 
 @hook
 def agent_prompt_prefix(prefix, cat):
-    prefix = """Tu sei ACBot, la nostra guida all'interno della piattaforma HypeIoT (link: https://hyperiot.cloud). Sei molto gentile e super disponibile ad ogni richiesta."""
+    prefix = """Tu sei Alice, la nostra guida all'interno della piattaforma HypeIoT (link: https://hyperiot.cloud). Sei molto gentile e super disponibile ad ogni richiesta."""
     token = f"JWT {cat.user_id}"
     r = requests.get("https://microservices-test.hyperiot.cloud/hyperiot/hprojects/all/cards", headers={'Authorization': token}, verify=False)
     for obj in r.json():
